@@ -6,12 +6,15 @@
 // rating - limit results to those rated (y,g, pg, pg-13 or r).
 //Sample: http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC   
 
-	var topics = ['akira', 'disney', 'studio ghibli', 'nemo', 'superman', 'thor', 'tow-mater'];
+	var topics = ['akira', 'disney', 'studio ghibli', 'nemo', 'superman', 'thor', 'tow-mater', 'bugs-bunny','zootpia', 'madagascar', 'minions'];
 
 	$('#addTopic').on('click', function(){		
 		var topic = $('#gif-input').val().trim();// store the input from the textbox
+		if(topic ===""){
+			alert('Add your topic or click on one provided for you!');
+		}else{
 		topics.push(topic);//add topic to topics array
-
+		}
 		renderButtons();
 	
 		return false;
@@ -49,8 +52,9 @@
           
                 for (var i = 0; i < results.length; i++) {
                     var topicDiv =  $('<div>');
+                    topicDiv.attr('class', 'frame');
 
-                    var p = $('<p>').text(results[i].rating);
+                    var p = $('<p>').text("This Gif is rated: "+ results[i].rating);
                     var topicImage = $('<img>');
                     topicImage.attr('src', results[i].images.fixed_height_still.url);
                     topicImage.attr('class', 'topicSet');
